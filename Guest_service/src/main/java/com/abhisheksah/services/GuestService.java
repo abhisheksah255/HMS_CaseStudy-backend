@@ -1,6 +1,7 @@
 package com.abhisheksah.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.abhisheksah.model.Guest;
 
@@ -11,6 +12,8 @@ public interface GuestService  {
 	List<Guest> getAllGuest();
 	
 	Guest getById(int id);
+	
+	Optional<Guest> getByGuestId(int id);
 	
 	Guest updateById(Guest guest ,int id);
 	

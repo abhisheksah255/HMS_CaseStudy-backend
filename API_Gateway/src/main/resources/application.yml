@@ -1,12 +1,17 @@
-spring:
-  application:
-    name: Api-Gateway
-  cloud:
-    gateway:
-      routes:
-      - id: receptionist-microservice
-        uri: http://localhost:8083/**
-        predicates:
-        - Path=/receptionist/**
+
+#
+#spring:
+#  port: 9001
+#  
+#  
+#  application:
+#    name: Api-Gateway
+#  cloud:
+#    gateway:
+#      routes:
+#      - id: receptionist-microservice
+#        uri: http://localhost:8083/**
+#        predicates:
+#        - Path=/receptionist/**
 
      

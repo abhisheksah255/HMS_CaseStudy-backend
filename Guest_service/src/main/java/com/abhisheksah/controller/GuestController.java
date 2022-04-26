@@ -19,34 +19,52 @@ import org.springframework.web.bind.annotation.RestController;
 import com.abhisheksah.model.Guest;
 import com.abhisheksah.services.GuestService;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/HMS/guest")
 public class GuestController {
 
+	
+	
+	private final static Logger Logger = LoggerFactory.getLogger(GuestController.class);
+	
 	@Autowired
 	private GuestService guestservice;
 	
 	@PostMapping("/addguest")
 	public ResponseEntity<Guest> addGuest(@RequestBody Guest guest){
+		Logger.info("New guest added successfully:---"+guest);
 		return new ResponseEntity<Guest>(guestservice.addGuest(guest),HttpStatus.OK);
 	}
 
 	@GetMapping("/allguest")
 	public List<Guest> getAllGuest(){
+		Logger.info("found all guest");
 		return guestservice.getAllGuest();
 	}
-	@GetMapping("/{id}")
+	
+	
+	@GetMapping("/get/{id}")
 	public ResponseEntity<Guest>getById(@PathVariable  int id){
+		Logger.info("Guest with id--"+id);
 		return new ResponseEntity<Guest>(guestservice.getById(id),HttpStatus.OK);
 	}
-	@PutMapping("/{id}")
+	
+	
+	@PutMapping("/update/{id}")
 	public ResponseEntity<Guest>updateById(@RequestBody Guest guest,@PathVariable("id") int id){
+		Logger.info("Guest updated Successfully with id--"+id +" and detail of updated guest is "+guest);
 		return new ResponseEntity<Guest>(guestservice.updateById(guest, id),HttpStatus.ACCEPTED);
 	}
-	@DeleteMapping("/{id}")
+	
+	@DeleteMapping("/delete/{id}")
 	public void deleteById(@PathVariable int id) {
-	guestservice.deleteById(id);	
+	guestservice.deleteById(id);
+	Logger.info("Guest deleted Successfully with id---"+id);
 	}
 	
 }

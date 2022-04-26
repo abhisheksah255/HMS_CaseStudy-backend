@@ -22,27 +22,33 @@ public class GuestController {
 	@Autowired
 	RestTemplate restTemplate;
 
+	//here i am calling addguest method from guest service by using url with the help of rest template
 	@PostMapping("/addguest")
 	public Guest addGuest(@RequestBody Guest guest) {
 		return restTemplate.postForObject("http://guest-service/HMS/guest/addguest", guest, Guest.class);
 	}
 
+	//here i am calling allguest method from guest service by using url with the help of rest template
 	@GetMapping("/allguest")
 	public List<Guest> getAllGuest() {
-		return restTemplate.getForObject("http://guest-service/HMS/guest/addguest",List.class);
+		return restTemplate.getForObject("http://guest-service/HMS/guest/allguest",List.class);
 	}
 	
-	@GetMapping("/{id}")
+	//here i am calling particular guest  method from guest service by using url with the help of rest template
+	@GetMapping("/get/{id}")
 	public Guest getById(@PathVariable int id) {
 		return restTemplate.getForObject("http://guest-service/HMS/guest/"+id, Guest.class);
 	}
 
-	@PutMapping("/{id}")
+	//here i am calling update guest method from guest service by using url with the help of rest template
+	@PutMapping("/update/{id}")
 	public Guest updateGuest(@RequestBody Guest guest,@PathVariable int id) {
 		restTemplate.put("http://guest-service/HMS/guest/"+id,guest, Guest.class);
 		return guest;
 	}
-	@DeleteMapping("/{id}")
+	
+	//here i am calling delete guest method from guest service by using url with the help of rest template
+	@DeleteMapping("/delete/{id}")
 	public String deleteGuest(@PathVariable int id)
 	{
 		restTemplate.delete("http://guest-service/HMS/guest/"+id);

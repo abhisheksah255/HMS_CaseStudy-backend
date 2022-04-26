@@ -44,6 +44,7 @@ public class GuestServiceImplement implements GuestService{
 	public Optional<Guest> getByGuestId(int id){
 		return repository.findById(id);
 	}
+	
 
 	@Override
 	public Guest updateById(Guest guest, int id) {
@@ -63,5 +64,7 @@ public class GuestServiceImplement implements GuestService{
 //		.orElseThrow(()->new HotelException("Guest", "id", id));
 		
 	}
+
+	
 
 }

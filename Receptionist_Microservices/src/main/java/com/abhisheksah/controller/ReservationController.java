@@ -24,13 +24,14 @@ public class ReservationController {
 	@Autowired
 	RestTemplate restTemplate;
 	
-
+	//here i am calling add reservation method from reservation service by using url with the help of rest template
 	@PostMapping("/addreservation")
 	public Reservation addReservation(@RequestBody Reservation reservation) {
 		reservation.setCheckinDate(new Date(System.currentTimeMillis()));
 		return restTemplate.postForObject("http://reservation-service/HMS/reservation/addreservation", reservation, Reservation.class);
 	} 
 
+	//here i am calling  get all reservation method from reservation service by using url with the help of rest template
 	@GetMapping("/allreservation")
 	public List<Reservation> getAllReservation(){
 //		 Reservation reservation=
@@ -39,24 +40,26 @@ public class ReservationController {
 	}
 	
 	
-	@GetMapping("/{code}")
+	//here i am calling get particular reservation method from reservation service by using url with the help of rest template
+	@GetMapping("/get/{code}")
 	public Reservation getById(@PathVariable int code) {
 		return restTemplate.getForObject("http://reservation-service/HMS/reservation/"+code, Reservation.class);
 		
 	}
 	
-	@PutMapping("/{code}")
+	//here i am calling update reservation method from reservation service by using url with the help of rest template
+	@PutMapping("/update/{code}")
 	public Reservation updateReservation(@RequestBody Reservation reservation,@PathVariable int code) {
 		restTemplate.put("http://reservation-service/HMS/reservation/"+code,reservation, Reservation.class);
 		return reservation;
 	}
 	
-	@DeleteMapping("/code")
+	
+	//here i am calling delete reservation method from reservation service by using url with the help of rest template
+	@DeleteMapping("/delete/{code}")
 	public String deleteReservation(@PathVariable int code) {
 		restTemplate.delete("http://reservation-service/HMS/reservation/"+code);
 		return "Reservation Deleted Successfully:---"+code;
 	}
-	
-	
 }
 

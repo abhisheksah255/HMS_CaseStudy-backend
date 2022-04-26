@@ -42,16 +42,18 @@ class GuestServiceApplicationTests {
 	}
 
 	//this is the test case for getById method
-/*
+
 	@Test
-	public void getByGuestId() {
+	public void GetByIdTest() {
 		int guestId=1;
-		when(repository.findById(guestId))
-		.thenReturn(Optional.of(Stream.of(new Guest(1, 9876543210L,"tcs","abhi" , "abhi@com", "male","Indian"))
-				.collect(Collectors.toList())));
-		assertEquals(1, guestServiceImplement.getByGuestId(guestId).size());
+		Optional<Guest> guest=Optional.of(new Guest(1, 9876543210L,"tcs","abhi" , "abhi@com", "male","Indian"));
+		when(repository.findById(guestId)).thenReturn(guest);
+		assertEquals(guest, guestServiceImplement.getByGuestId(guestId));
+	
+	
 	}
-	*/
+	
+
 	
 	//this is the method to check the add guest test
 @Test	
@@ -71,9 +73,13 @@ public void deleteById() {
 }
 
 /*
- * @Test public void getByGuestId() { Guest guest=repository.findById(1).get();
- * Assertions.assertThat(guest.getGuestId()).isEqualTo(1); }
+  @Test 
+  public void getByGuestId() { 
+	  Guest guest=repository.findById(1).get();
+  Assertions.assertThat(guest.getGuestId()).isEqualTo(1);
+  }
  */
+
 
 @Test
 public void updateById() {
@@ -81,4 +87,6 @@ public void updateById() {
 	guest.setEmail("abhishek@gmail.com");
 	Assertions.assertThat(guest.getGuestId()).isEqualTo(1);
 }
+
+ 
 }

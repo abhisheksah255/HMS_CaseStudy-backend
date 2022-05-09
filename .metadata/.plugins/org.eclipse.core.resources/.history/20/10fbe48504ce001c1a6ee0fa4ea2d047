@@ -1,0 +1,5 @@
+package com.abhisheksah.exceptions;
+
+public class ResourceNotFountException {
+
+}

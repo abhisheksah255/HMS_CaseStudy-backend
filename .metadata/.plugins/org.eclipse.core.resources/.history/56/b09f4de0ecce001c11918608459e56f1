@@ -1,0 +1,184 @@
+package com.abhisheksah;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import org.apache.http.HttpStatus;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.abhisheksah.exceptions.HotelException;
+import com.abhisheksah.model.Reservation;
+import com.abhisheksah.model.Reservation;
+import com.abhisheksah.repository.ReservationRepo;
+import com.abhisheksah.repository.ReservationRepository;
+import com.abhisheksah.services.Reservationservice;
+import com.abhisheksah.services.ReservationService;
+import com.abhisheksah.services.ReservationServiceImplement;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+class ReservationServiceApplicationTests {
+
+	@MockBean
+	private ReservationRepository repository;
+	
+	@Autowired
+	private ReservationServiceImplement serviceImplement;
+	
+	@Autowired
+	private ReservationService service;
+/*
+	//this is the test for add reservation service 
+	@Test
+	public void addReservationTest() {
+		Reservation reservation=new Reservation(101,2 , 3, null, null, "Occupied", 6);
+	when(repository.save(reservation)).thenReturn(reservation);
+	assertEquals(reservation,serviceImplement.addReservation(reservation));
+	}
+	//this is the test for get all the  reservation service 
+	@Test
+	public void getAllReservationTest() {
+		when(repository.findAll()).thenReturn(
+				Stream.of(new Reservation(101,2 , 3, null, null, "Occupied", 6),
+						new Reservation(101,2 , 3, null, null, "Occupied", 6))
+				.collect(Collectors.toList()));
+		assertEquals(2,serviceImplement.getAllReservation().size());
+		
+	}
+	
+	//this is the test for get a particular  reservation service 
+	@Test
+	public void getByIdTest() {
+	int code=101;
+	Optional<Reservation> reservation=Optional.of(new Reservation(101,2 , 3, null, null, "Occupied", 6));
+	when(repository.findById(code)).thenReturn(reservation);
+	assertEquals(reservation, serviceImplement.getById(code));
+	}
+	
+	
+	//this is the test for update the particular reservation service 
+	@Test
+	public void updateByIdTest() {}
+	
+	//this is the test for delete reservation service 
+	@Test
+	public void deleteByIdTest() {
+		int code=101;
+		Optional<Reservation> reservation=Optional.of(new Reservation(code,2 , 3,null, null, "Occupied", 6));
+//				.orElseThrow(() -> new HotelException("reservation", "code", code) ));
+		serviceImplement.deleteById(code);
+		verify(repository,times(1)).deleteById(code);
+	}
+
+
+	
+	@BeforeEach
+	void setup() {
+		Optional<Reservation> reservation=Optional.of(new Reservation(123l,1001,1,"05-06-2022","05-07-2022",2,2000));
+		Mockito.when(repository.findById(123l)).thenReturn(reservation);
+	}
+	@Test
+	public void findByIdTest() {
+		Reservation reservation=repository.findById(123l).get();
+	assertEquals("",reservation.getReservationId());
+//		Assertions.assertArrayEquals(reservation.getReservationId()).isEqualTo(1);
+	}
+	//this is the test case for check the inventory id and data store on that id 
+	//getById method
+	//these are the test cases for service layer 
+	@Test
+	public void ReservationNameTest() {
+		String Reservation_id="RoomKey";
+		Optional<Reservation> inventory=service.getById(123L);
+		assertEquals(Reservation_id, inventory.get().getInventoryName());
+		
+	}
+	
+	@Test
+	public void inventoryTypeTest() {
+		String inventoryType="lock";
+		Optional<Reservation> Reservation=service.getById(123L);
+		assertEquals(inventoryType,inventory.get().getInventoryType());
+		
+	}
+	
+	@Test
+	public void deleteById() {
+			long InventoryId=123L;
+			Reservation Reservation=new Reservation(123L,"RoomKey",89L,"lock");
+			service.DeleteInventory(InventoryId);
+			verify(repository, times(1)).deleteById(InventoryId);
+	}
+	
+	@Test
+	public void getAllReservationTest() {
+		service.getAllInventory();
+		verify(repository).findAll();
+
+	}
+*/
+	
+
+	
+	@BeforeEach
+	void setup() {
+		Optional<Reservation> Reservation=Optional.of(new Reservation(123L,1001,1,"05-08-2022", "05-12-2022",2,2400));
+		Mockito.when(repository.findById(123L)).thenReturn(Reservation);
+	}
+	@Test
+	public void findByIdTest() {
+		Reservation Reservation=repository.findById(123L).get();
+		assertEquals(123L,Reservation.getReservationID());
+	}
+	//this is the test case for check the Reservation id and data store on that id 
+	//getById method
+	//these are the test cases for service layer 
+	@Test
+	public void ReservationNameTest() {
+		String ReservationName="Account";
+		Optional<Reservation> Reservation=service.getReservation(123L);
+		assertEquals(ReservationName, Reservation.get().getReservationName());
+		
+	}
+	
+	@Test
+	public void ReservationDescTest() {
+		String ReservationDes="this is all account dept.";
+		Optional<Reservation> Reservation=service.getReservation(123L);
+		assertEquals(ReservationDes,Reservation.get().getDesc());
+		
+	}
+	
+	@Test
+	public void deleteByReservationId() {
+			long ReservationId=123L;
+			Reservation Reservation=new Reservation(123L,"Account","this is all account dept.",4);
+			service.deleteReservation(ReservationId);
+			verify(repository, times(1)).deleteById(ReservationId);
+	}
+	
+	@Test
+	public void getAllReservationTest() {
+		service.getAlldept();
+		verify(repository).findAll();
+
+	}
+}
+
+

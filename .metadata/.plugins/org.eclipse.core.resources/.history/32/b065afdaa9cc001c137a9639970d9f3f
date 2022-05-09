@@ -1,0 +1,21 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+
+import com.abhisheksah.repository.StaffRepository;
+
+@DataMongoTest
+class StaffRepositoryTest {
+
+	@Autowired
+	private StaffRepository repository;
+	@Test
+	public void findByIdTest() {
+		
+	}
+
+}

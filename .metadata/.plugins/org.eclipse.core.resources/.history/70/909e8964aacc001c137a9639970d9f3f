@@ -1,0 +1,29 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+
+import com.abhisheksah.model.Staff;
+import com.abhisheksah.repository.StaffRepository;
+
+@DataMongoTest
+class StaffRepositoryTest {
+
+	@Autowired
+	private StaffRepository repository;
+	
+	@BeforeEach
+	void setup() {
+		Staff staff=new Staff(123, "Abhishek", "Lucknow", "abhi@gmail.com", "Male", "Manager", 567656);
+	}
+	
+	@Test
+	public void findByIdTest() {
+		Staff staff=repository.findById(1).get();
+	}
+
+}

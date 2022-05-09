@@ -8,7 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Staff {
 
 	@Id
-	private int id;
+	private int employeeId;
 	@Field
 	private String employeeName;
 	private String employeeAddress;
@@ -22,10 +22,10 @@ public class Staff {
 	
 	}
 	
-	public Staff(int Id, String employeeName, String employeeAddress, String employeeEmail, String employeeGender,
+	public Staff(int employeeId, String employeeName, String employeeAddress, String employeeEmail, String employeeGender,
 			String employeePost, long employeeSalary) {
 		super();
-		this.id = id;
+		this.employeeId = employeeId;
 		this.employeeName = employeeName;
 		this.employeeAddress = employeeAddress;
 		this.employeeEmail = employeeEmail;
@@ -34,12 +34,14 @@ public class Staff {
 		this.employeeSalary = employeeSalary;
 	}
 
-	public int getId() {
-		return id;
+	
+
+	public int getEmployeeId() {
+		return employeeId;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setEmployeeId(int employeeId) {
+		this.employeeId = employeeId;
 	}
 
 	public String getEmployeeName() {
@@ -92,7 +94,7 @@ public class Staff {
 
 	@Override
 	public String toString() {
-		return "Staff [staffId=" + id + ", employeeName=" + employeeName + ", employeeAddress=" + employeeAddress
+		return "Staff [employeeId=" + employeeId + ", employeeName=" + employeeName + ", employeeAddress=" + employeeAddress
 				+ ", employeeEmail=" + employeeEmail + ", employeeGender=" + employeeGender + ", EmployeePost="
 				+ employeePost + ", employeeSalary=" + employeeSalary + "]";
 	}

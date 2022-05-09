@@ -1,0 +1,38 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+
+import com.abhisheksah.model.Staff;
+import com.abhisheksah.repository.StaffRepository;
+
+@DataMongoTest
+@AutoConfigureTestDatabase(replace = Replace.NONE)
+class StaffRepositoryTest {
+
+	@Autowired
+	private StaffRepository repository;
+	
+	@Autowired
+	private TestEntityManager entityManager;
+	
+	@BeforeEach
+	void setup() {
+		Staff staff=new Staff(123, "Abhishek", "Lucknow", "abhi@gmail.com", "Male", "Manager", 567656);
+		entityManager.persist(staff);
+		}
+	
+	@Test
+	public void findByIdTest() {
+		Staff staff=repository.findById(1).get();
+		assertEquals("abhi@gmail.com",staff.getEmployeeEmail());
+	}
+
+}

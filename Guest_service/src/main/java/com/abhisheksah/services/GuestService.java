@@ -11,11 +11,11 @@ public interface GuestService  {
 	
 	List<Guest> getAllGuest();
 	
-	Guest getById(int id);
+	Guest getById(long id);
 	
-	Optional<Guest> getByGuestId(int id);
+	Optional<Guest> getByGuestId(long id);
 	
-	Guest updateById(Guest guest ,int id);
+	Guest updateById(Guest guest ,long id);
 	
-	void deleteById(int id);
+	void deleteById(long id);
 }

@@ -1,0 +1,78 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.abhisheksah.model.Room;
+
+import com.abhisheksah.repository.RoomRepository;
+import com.abhisheksah.services.RoomService;
+
+
+@SpringBootTest
+@RunWith(SpringRunner.class)
+class RoomServiceApplicationTests {
+
+	@MockBean
+	private RoomRepository repository;
+
+	@Autowired
+	private RoomService service;
+	
+	@BeforeEach
+	void setup() {
+		Optional<Room> Room=Optional.of(new Room(1001L, "Single Bed",1200,true));
+		Mockito.when(repository.findById(1001L)).thenReturn(Room);
+	}
+	@Test
+	public void findByIdTest() {
+		Room Room=repository.findById(1001L).get();
+		assertEquals(123L,Room.getRoomId());
+	}
+	//this is the test case for check the Room id and data store on that id 
+	//getById method
+	//these are the test cases for service layer 
+	@Test
+	public void RoomTypeTest() {
+		String RoomName="Single Bed";
+		Optional<Room> Room=service.getRoom(123L);
+		assertEquals(RoomName, Room.get().getRoomName());
+		
+	}
+	
+	@Test
+	public void RoomDescTest() {
+		String RoomDes="this is all account dept.";
+		Optional<Room> Room=service.getRoom(123L);
+		assertEquals(RoomDes,Room.get().getDesc());
+		
+	}
+	
+	@Test
+	public void deleteByRoomId() {
+			long RoomId=123L;
+			Room Room=new Room(123L,"Account","this is all account dept.",4);
+			service.deleteRoom(RoomId);
+			verify(repository, times(1)).deleteById(RoomId);
+	}
+	
+	@Test
+	public void getAllRoomTest() {
+		service.getAlldept();
+		verify(repository).findAll();
+
+	}
+
+}

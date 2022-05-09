@@ -1,0 +1,5 @@
+package com.abhisheksah.config;
+
+public class ValidationConfig {
+
+}

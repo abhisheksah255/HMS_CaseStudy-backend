@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import com.abhisheksah.model.Staff;
 import com.abhisheksah.repository.StaffRepository;
 import com.abhisheksah.services.StaffService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/HMS/staff")
 public class StaffController {
@@ -54,21 +56,21 @@ public class StaffController {
 //	return new ResponseEntity<Staff>(service.FindByPost(employeePost),HttpStatus.OK);
 //	}
 	
-	@GetMapping("/get/{id}")
-	public Optional<Staff> getByStaffId(@PathVariable("id") int id){
+	@GetMapping("/get/{empId}")
+	public Optional<Staff> getByStaffId(@PathVariable("empId") int empId){
 		Logger.info("Get particular Staff details by their post:--");
-		return service.getByStaffId(id);
+		return service.getByStaffId(empId);
 	}
 	
-	@PutMapping("/update/{id}")
-	public ResponseEntity<Staff> updateStaffById(@RequestBody Staff staff,@PathVariable int id){
+	@PutMapping("/update/{empId}")
+	public ResponseEntity<Staff> updateStaffById(@RequestBody Staff staff , @PathVariable int empId){
 		Logger.info("update particular staff by their id:--");
-	return new ResponseEntity<Staff>(service.updateById(staff, id),HttpStatus.ACCEPTED);
+	return new ResponseEntity<Staff>(service.updateById(staff, empId),HttpStatus.ACCEPTED);
 	}
 	
-	@DeleteMapping("/delete/{id}")
-	public String deleteStaffById(@PathVariable ("id") int id){
+	@DeleteMapping("/delete/{empId}")
+	public String deleteStaffById(@PathVariable ("empId") int empId){
 		Logger.info("delete the particular Staff by their id");
-	return service.deleteById(id);
+	return service.deleteById(empId);
 	}
 }

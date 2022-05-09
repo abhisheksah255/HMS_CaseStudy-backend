@@ -11,9 +11,9 @@ public interface StaffService {
 	List<Staff> getAllStaff();
 	
 
-	Optional<Staff> getByStaffId(int id);
+	Optional<Staff> getByStaffId(int empId);
 	
-	Staff updateById(Staff staff,int id);
-	String deleteById(int id);
+	Staff updateById(Staff staff,int empId);
+	String deleteById(int empId);
 	Staff FindByPost(String employeePost);
 }

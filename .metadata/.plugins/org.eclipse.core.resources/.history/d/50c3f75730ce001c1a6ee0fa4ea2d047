@@ -1,0 +1,13 @@
+package com.abhisheksah.config;
+
+public class ValidationConfig {
+	@Bean
+	public ValidatingMongoEventListener validationMongoEventListener() {
+		return new ValidatingMongoEventListener(validator());
+	}
+	
+	@Bean
+	public LocalValidatorFactoryBean validator() {
+		return new LocalValidatorFactoryBean();
+	}
+}

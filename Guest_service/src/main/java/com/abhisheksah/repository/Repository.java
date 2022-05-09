@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.Query;
 
 import com.abhisheksah.model.Guest;
 
-public interface Repository extends MongoRepository<Guest, Integer>{
+public interface Repository extends MongoRepository<Guest, Long>{
 
 	/*
 	@Query

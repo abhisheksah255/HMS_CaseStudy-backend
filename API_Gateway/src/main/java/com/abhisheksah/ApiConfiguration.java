@@ -81,15 +81,15 @@ public class ApiConfiguration {
 								.uri("http://localhost:8082")
 								)
 						.route(p->p
-								.path("/HMS/reservation/get/{code}")
+								.path("/HMS/reservation/get/{reservationId}")
 								.uri("http://localhost:8082")
 								)
 						.route(p->p
-								.path("/HMS/reservation/update/{code}")
+								.path("/HMS/reservation/update/{reservationId}")
 								.uri("http://localhost:8082")
 								)
 						.route(p->p
-								.path("/HMS/reservation/delete/{code}")
+								.path("/HMS/reservation/delete/{reservationId}")
 								.uri("http://localhost:8082")
 								)
 						.build();
@@ -124,6 +124,61 @@ public class ApiConfiguration {
 	
 	}
 
+	@Bean
+	public RouteLocator locatorInventory(RouteLocatorBuilder locatorBuilder) {
+		return locatorBuilder.routes()
+				.route(p->p
+						.path("/HMS/inventory/allinventory")
+						.uri("http://localhost:8085")
+						)
+						
+						.route(p->p
+								.path("/HMS/inventory/addinventory")
+								.uri("http://localhost:8085")
+								)
+						.route(p->p
+								.path("/HMS/inventory/get/{inventoryid}")
+								.uri("http://localhost:8085")
+								)
+						.route(p->p
+								.path("/HMS/inventory/update/{inventoryid}")
+								.uri("http://localhost:8085")
+								)
+						.route(p->p
+								.path("/HMS/inventory/delete/{inventoryid}")
+								.uri("http://localhost:8085")
+								)
+						.build();
 	
+	}
+
+	
+	@Bean
+	public RouteLocator locatorDepartment(RouteLocatorBuilder locatorBuilder) {
+		return locatorBuilder.routes()
+				.route(p->p
+						.path("/HMS/department/alldepartment")
+						.uri("http://localhost:8086")
+						)
+						
+						.route(p->p
+								.path("/HMS/department/adddepartment")
+								.uri("http://localhost:8086")
+								)
+						.route(p->p
+								.path("/HMS/department/get/{id}")
+								.uri("http://localhost:8086")
+								)
+						.route(p->p
+								.path("/HMS/department/update/{id}")
+								.uri("http://localhost:8086")
+								)
+						.route(p->p
+								.path("/HMS/department/delete/{id}")
+								.uri("http://localhost:8086")
+								)
+						.build();
+	
+	}
 
 }

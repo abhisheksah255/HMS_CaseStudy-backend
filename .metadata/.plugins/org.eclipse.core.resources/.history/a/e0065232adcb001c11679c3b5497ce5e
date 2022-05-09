@@ -1,0 +1,5 @@
+package com.abhisheksah.model;
+
+public class AuthenticationRequest {
+
+}

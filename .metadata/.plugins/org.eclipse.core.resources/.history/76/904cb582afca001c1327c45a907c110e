@@ -1,0 +1,16 @@
+package com.abhisheksah.model;
+
+import java.util.Date;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+@Document(collection="Reservation")
+public class Reservation {
+	@Id
+	private long reservationId;
+	private long roomId;
+	private long guestId;
+	
+}

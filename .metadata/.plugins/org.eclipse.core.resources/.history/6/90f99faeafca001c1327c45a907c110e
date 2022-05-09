@@ -1,0 +1,30 @@
+package com.abhisheksah.model;
+
+import java.util.Date;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+@Document(collection="Reservation")
+public class Reservation {
+	@Id
+	@NotNull(message="Reservation ID cannnot be null")
+	@Size(min=10,message="Reservation ID should be minimum 10 digits")
+	private long reservationId;
+	private long roomId;
+	private long guestId;
+	
+	@NotNull(message="Date cannot be null")
+	@Size(min=10,max=10,message="Date should be in format dd-mm-yyyy")
+	private String checkInDate;
+	@NotNull(message="Date cannot be null")
+	@Size(min=10,max=10,message="Date should be in format dd-mm-yyyy")
+	private String checkOutDate;
+	private int numOfGuest;
+	private double totalPrice;
+	
+}

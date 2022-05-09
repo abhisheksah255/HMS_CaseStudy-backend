@@ -1,0 +1,28 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.abhisheksah.controller.StaffController;
+import com.abhisheksah.services.StaffService;
+
+@WebMvcTest(StaffController.class)
+class StaffControllerTest {
+
+	@Autowired
+	private MockMvc mockmvc;
+	
+	@MockBean
+	private StaffService service;
+	
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

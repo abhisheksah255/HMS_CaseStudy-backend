@@ -1,0 +1,18 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
+import com.abhisheksah.controller.StaffController;
+
+@WebMvcTest(StaffController.class)
+class StaffControllerTest {
+
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
+
+}

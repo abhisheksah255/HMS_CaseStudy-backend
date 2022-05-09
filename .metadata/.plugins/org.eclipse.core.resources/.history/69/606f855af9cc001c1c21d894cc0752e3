@@ -1,0 +1,54 @@
+package com.abhisheksah;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit4.SpringRunner;
+
+import com.abhisheksah.model.Staff;
+import com.abhisheksah.repository.InventoryRepository;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+class InventoryServiceApplicationTests {
+
+	@Mock
+	private InventoryRepository repository;
+
+	
+	@BeforeEach
+	void setup() {
+		Optional<Staff> staff=Optional.of(new Staff(123, "Abhishek", "Lucknow", "abhi@gmail.com", "Male", "Manager", 567656));
+		Mockito.when(repository.findById(1)).thenReturn(staff);
+	}
+	@Test
+	public void findByIdTest() {
+		Staff staff=repository.findById(1).get();
+		assertEquals("abhi@gmail.com",staff.getEmployeeEmail());
+	}
+	//this is the test case for check the staff id and data store on that id 
+	//getById method
+	//these are the test cases for service layer 
+	@Test
+	public void StaffNameTest() {
+		String employee_name="Abhishek";
+		Optional<Staff> staffId=service.getByStaffId(1);
+		assertEquals(employee_name, staffId.get().getEmployeeName());
+		
+	}
+	
+	@Test
+	public void StaffAddressTest() {
+		String employee_address="Lucknow";
+		Optional<Staff> staffId=service.getByStaffId(1);
+		assertEquals(employee_address, staffId.get().getEmployeeAddress());
+		
+	}
+}

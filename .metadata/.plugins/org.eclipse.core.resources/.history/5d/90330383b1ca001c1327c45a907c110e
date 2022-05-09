@@ -1,0 +1,18 @@
+package com.abhisheksah.services;
+
+import java.util.List;
+
+import com.abhisheksah.model.Reservation;
+
+public interface ReservationService {
+
+	String addReservation(Reservation reservation);
+	
+	List<Reservation> getAllReservation();
+	
+	Reservation getById(long reservId);
+	
+	Reservation updateReservation(Reservation reservation,long reservId);
+	
+	String deleteReservation(long reservId);
+}
